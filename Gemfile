@@ -5,3 +5,4 @@ gem 'rails-api'
 gem 'spring', :group => :development
 gem 'pg'
 gem 'rack-cors'
+gem 'rails_12factor'
