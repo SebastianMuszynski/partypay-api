@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
     render_json(message, status_code)
   end
 
-  def set_access_control_headers
+  def access_control_headers
      headers['Access-Control-Allow-Origin']   = "*"
      headers['Access-Control-Request-Method'] = %w{GET POST OPTIONS}.join(",")
    end
