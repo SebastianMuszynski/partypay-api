@@ -1,10 +1,14 @@
 class RootController < ApplicationController
   def index
-    render_json({ "users": "#{main_url}/users" })
+    paths = [
+      '/users'
+    ]
+    routes = paths.collect { |path| get_domain + path }
+    render_json(routes)
   end
 
   private
-  def main_url
-    "http://localhost:9000"
+  def get_domain
+    request.protocol + request.host_with_port
   end
 end
