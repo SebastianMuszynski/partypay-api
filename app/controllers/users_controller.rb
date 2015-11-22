@@ -44,9 +44,12 @@ class UsersController < ApplicationController
     tag = Tag.where(name: params[:tag_name]).first
     if tag.present?
       user = tag.user
-
       if user.amount - params[:amount].to_f >= 0
         if user.update(amount: user.amount - params[:amount].to_f)
+          if params[:vender_id].present?
+            vender = User.find(params[:vender_id])
+            vender.update(amount: vender.amount + params[:amount].to_f)
+          end
           render_json({ status: "accepted", message: "Payment accepted!" })
         else
           render_json({ status: "declined", message: "Network issue, try again please." })
